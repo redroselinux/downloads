@@ -190,17 +190,14 @@ code {
     margin: 0 auto 1.5rem;
 }
 </style>
-
 <div class="download-section" id="download-section">
     <div class="cta-buttons">
-        <button class="primary" id="beta-launcher-btn">Redrose Beta VM Launcher</button>
-        <button class="secondary" id="download-iso-btn">Download ISO</button>
+        <a href="#" class="primary" id="beta-launcher-btn">Redrose Beta VM Launcher</a>
+        <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso" class="secondary" id="download-iso-btn">Download ISO</a>
     </div>
-    <div id="download-content" style="margin-top: 2rem; text-align:center;">
-        <h1>Redrose Beta VM Launcher</h1>
-        <p>Run this command to launch Redrose in QEMU:</p>
-        <pre><code>curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3</code></pre>
-    </div>
+
+    <!-- Content area hidden by default -->
+    <div id="download-content" style="margin-top: 2rem; text-align:center; display:none;"></div>
 </div>
 
 <script>
@@ -208,27 +205,40 @@ const betaBtn = document.getElementById("beta-launcher-btn");
 const isoBtn = document.getElementById("download-iso-btn");
 const contentDiv = document.getElementById("download-content");
 
-betaBtn.addEventListener("click", () => {
+betaBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Highlight beta button
     betaBtn.classList.add("primary");
     betaBtn.classList.remove("secondary");
     isoBtn.classList.add("secondary");
     isoBtn.classList.remove("primary");
 
+    // Show content
+    contentDiv.style.display = "block";
     contentDiv.innerHTML = `
         <h1>Redrose Beta VM Launcher</h1>
-        <p>Run this command to launch Redrose in our QEMU launcher:</p>
+        <p>Run this command to launch Redrose in QEMU:</p>
         <pre><code>curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3</code></pre>
     `;
 });
 
 isoBtn.addEventListener("click", () => {
+    // Highlight ISO button
     betaBtn.classList.add("secondary");
     betaBtn.classList.remove("primary");
     isoBtn.classList.add("primary");
     isoBtn.classList.remove("secondary");
 
-    // Direct download link
-    window.location.href = "https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso";
+    // Direct download, optionally show some text if you want
+    contentDiv.style.display = "block";
+    contentDiv.innerHTML = `
+        <h1>Download Redrose ISO</h1>
+        <p>Your download should start automatically. If not, <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso" target="_blank">click here</a>.</p>
+    `;
+
+    // Trigger download
+    window.location.href = isoBtn.href;
 });
 </script>
 
