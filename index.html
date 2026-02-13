@@ -191,11 +191,44 @@ code {
 }
 </style>
 
-<div class="download-section">
-    <h1>Download Redrose Linux</h1>
-    <p>If you want to test easily, you can simply run this command to open our QEMU wrapper for the ISOs:</p>
-    <pre><code>curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3</code></pre>
+<div class="download-section" id="download-section">
     <div class="cta-buttons">
-        <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso" class="secondary">Download Alpha ISO</a>
+        <button class="primary" id="beta-launcher-btn">Redrose Beta VM Launcher</button>
+        <button class="secondary" id="download-iso-btn">Download ISO</button>
+    </div>
+    <div id="download-content" style="margin-top: 2rem; text-align:center;">
+        <h1>Redrose Beta VM Launcher</h1>
+        <p>Run this command to launch Redrose in QEMU:</p>
+        <pre><code>curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3</code></pre>
     </div>
 </div>
+
+<script>
+const betaBtn = document.getElementById("beta-launcher-btn");
+const isoBtn = document.getElementById("download-iso-btn");
+const contentDiv = document.getElementById("download-content");
+
+betaBtn.addEventListener("click", () => {
+    betaBtn.classList.add("primary");
+    betaBtn.classList.remove("secondary");
+    isoBtn.classList.add("secondary");
+    isoBtn.classList.remove("primary");
+
+    contentDiv.innerHTML = `
+        <h1>Redrose Beta VM Launcher</h1>
+        <p>Run this command to launch Redrose in our QEMU launcher:</p>
+        <pre><code>curl -sSSL https://raw.githubusercontent.com/redroselinux/redroselinux/refs/heads/main/src/redrose-launcher/main.py | python3</code></pre>
+    `;
+});
+
+isoBtn.addEventListener("click", () => {
+    betaBtn.classList.add("secondary");
+    betaBtn.classList.remove("primary");
+    isoBtn.classList.add("primary");
+    isoBtn.classList.remove("secondary");
+
+    // Direct download link
+    window.location.href = "https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso";
+});
+</script>
+
