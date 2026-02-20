@@ -193,7 +193,7 @@ code {
 <div class="download-section" id="download-section">
     <div class="cta-buttons">
         <a href="#" class="primary" id="beta-launcher-btn">Redrose Beta VM Launcher</a>
-        <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso" class="secondary" id="download-iso-btn">Download ISO</a>
+        <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.3rc1/redrose_linux.iso" class="secondary" id="download-iso-btn">Download ISO</a>
     </div>
 
     <!-- Content area hidden by default -->
@@ -230,11 +230,10 @@ isoBtn.addEventListener("click", () => {
     isoBtn.classList.add("primary");
     isoBtn.classList.remove("secondary");
 
-    // Direct download, optionally show some text if you want
     contentDiv.style.display = "block";
     contentDiv.innerHTML = `
         <h1>Download Redrose ISO</h1>
-        <p>Your download should start automatically. If not, <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.2/redrose_linux.iso" target="_blank">click here</a>.</p>
+        <p>Your download should start automatically. If not, <a href="https://github.com/redroselinux/redroselinux/releases/download/alpha0.3rc1/redrose_linux.iso" target="_blank">click here</a>.</p>
     `;
 
     // Trigger download
